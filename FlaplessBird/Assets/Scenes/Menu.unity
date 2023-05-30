@@ -216,7 +216,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Store
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &824181070
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: get assets
+  m_text: store
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8e8b6357a27e7a14baf5aa26cd311898, type: 2}
   m_sharedMaterial: {fileID: 1180052478120769051, guid: 8e8b6357a27e7a14baf5aa26cd311898, type: 2}
