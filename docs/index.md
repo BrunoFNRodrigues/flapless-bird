@@ -1,4 +1,4 @@
-Privacy Policy
+# Privacy Policy
 Grupo 2 built the FlaplessBird app as a Free app. This SERVICE is provided by Grupo 2 at no cost and is intended for use as is.
 
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
