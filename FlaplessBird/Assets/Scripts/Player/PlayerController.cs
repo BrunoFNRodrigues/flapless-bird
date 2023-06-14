@@ -71,4 +71,10 @@ public class PlayerController : MonoBehaviour
         }
         playerState -= 1;
     }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "Obstacle")
+            print("PERDEU");
+    }
+
 }
