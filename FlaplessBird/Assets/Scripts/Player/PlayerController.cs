@@ -5,19 +5,70 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Touch touch;
-    private Vector2 touchStartPosition, touchEndPosition;
-    private string direction;
+    // Variables to track touch/mouse input
+    private Vector2 inputStartPosition;
+    private bool isInputActive = false;
+
+    public int playerState = 2;
+
+    // Movement speed
+    public float moveSpeed = 5f;
+
+    // Fixed positions
+    public Transform column1;
+    public Transform column2;
+    public Transform column3;
     
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            inputStartPosition = Input.mousePosition;
+            isInputActive = true;
+        }
+        else if (Input.GetMouseButtonUp(0) && isInputActive)
+        {
+            Vector2 inputEndPosition = Input.mousePosition;
+            Vector2 inputDelta = inputEndPosition - inputStartPosition;
+            float inputMagnitude = inputDelta.magnitude;
+
+            if (inputMagnitude >= 50f)
+            {
+                float inputDirection = Mathf.Sign(inputDelta.x);
+
+                if (inputDirection > 0f && playerState != 3) // Right swipe
+                {
+                    MoveRight();
+                }
+                else if (inputDirection < 0f && playerState != 1) // Left swipe
+                {
+                    MoveLeft();
+                }
+            }
+
+            isInputActive = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void MoveRight()
+    {   
+        if(playerState == 1){
+            transform.position = new Vector2(column2.position.x, column2.position.y);
+        }
+        else if(playerState == 2){
+            transform.position = new Vector2(column3.position.x, column3.position.y);
+        }
+        playerState += 1;
+    }
+
+    private void MoveLeft()
     {
-        
+        if(playerState == 3){
+            transform.position = new Vector2(column2.position.x, column2.position.y);
+        }
+        else if(playerState == 2){
+            transform.position = new Vector2(column1.position.x, column1.position.y);
+        }
+        playerState -= 1;
     }
 }
