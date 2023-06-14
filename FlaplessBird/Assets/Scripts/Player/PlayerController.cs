@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public Transform column1;
     public Transform column2;
     public Transform column3;
+
+    public GameObject manager;
     
     private void Update()
     {
@@ -75,6 +77,10 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Obstacle")
             print("PERDEU");
+        if(other.tag == "Coin"){
+            manager.GetComponent<Manager>().AddCoin();
+            Destroy(other.gameObject);
+        }
     }
 
 }
