@@ -20,15 +20,19 @@ public class PlayerController : MonoBehaviour
     public Transform column3;
 
     public GameObject manager;
+
+    void Start(){
+        manager = GameObject.Find("GameManager");
+    }
     
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !manager.GetComponent<Manager>().stopSign)
         {
             inputStartPosition = Input.mousePosition;
             isInputActive = true;
         }
-        else if (Input.GetMouseButtonUp(0) && isInputActive)
+        else if (Input.GetMouseButtonUp(0) && isInputActive && !manager.GetComponent<Manager>().stopSign)
         {
             Vector2 inputEndPosition = Input.mousePosition;
             Vector2 inputDelta = inputEndPosition - inputStartPosition;
@@ -77,7 +81,6 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Obstacle")
             manager.GetComponent<Manager>().StopGame();
-            print("PERDEU");
         if(other.tag == "Coin"){
             manager.GetComponent<Manager>().AddCoin();
             Destroy(other.gameObject);
