@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Obstacle")
+            manager.GetComponent<Manager>().StopGame();
             print("PERDEU");
         if(other.tag == "Coin"){
             manager.GetComponent<Manager>().AddCoin();
