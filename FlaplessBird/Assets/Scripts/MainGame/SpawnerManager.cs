@@ -12,11 +12,14 @@ public class SpawnerManager : MonoBehaviour
     private float timer = 0f;             
     private float spawnInterval = 0f;
 
+    public GameObject manager;
+
     public bool stop = false;
 
     private void Start()
     {
         GenerateSpawnInterval();
+        manager = GameObject.Find("GameManager");
     }
 
     private void Update()
@@ -40,7 +43,7 @@ public class SpawnerManager : MonoBehaviour
 
     private void SpawnObject()
     {
-        if(!stop)
+        if(!manager.GetComponent<Manager>().stopSign)
             Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
     }
 }
