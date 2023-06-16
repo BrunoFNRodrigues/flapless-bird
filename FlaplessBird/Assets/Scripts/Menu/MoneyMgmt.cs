@@ -10,7 +10,7 @@ public class MoneyMgmt : MonoBehaviour
     public static MoneyMgmt instance;
 
     // the player's money
-    public int currentMoney;
+    public static int currentMoney = 10;
 
     // Text that displays the player's money
     public TextMeshProUGUI txt_Money;
