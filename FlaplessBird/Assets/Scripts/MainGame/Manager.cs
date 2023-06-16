@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class Manager : MonoBehaviour
 {
+    public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI cointText;
+    public TextMeshProUGUI finalScoreText;
     private Rigidbody2D rb;
 
     private float fallingDepth = 0f;
@@ -34,9 +38,12 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        float downwardMovement = 0.7f;
-        fallingDepth += downwardMovement * Time.deltaTime;
-        scoreText.text = fallingDepth.ToString("F2");
+        if (!stopSign) {
+            float downwardMovement = 0.7f;
+            fallingDepth += downwardMovement * Time.deltaTime;
+            scoreText.text = fallingDepth.ToString("F2");
+        }
+
     }
 
     public void AddCoin(){
@@ -46,9 +53,13 @@ public class Manager : MonoBehaviour
     }
 
     public void StopGame(){
+        
         soundPlayerEnd.Play();
         stopSign = true;
         deadCanvas.SetActive(true);
+        finalScoreText.text = scoreText.text;
+        CheckHighScore();
+        UpdateHighScoreText();
     }
 
     public void RestartScene(){
@@ -68,5 +79,18 @@ public class Manager : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void CheckHighScore()
+    {
+        if(fallingDepth > PlayerPrefs.GetFloat("HighScore", 0.00f))
+        {
+            PlayerPrefs.SetFloat("HighScore", fallingDepth);
+        }
+    }
+
+    void UpdateHighScoreText()
+    {
+        highScoreText.text = PlayerPrefs.GetFloat("HighScore", 0.00f).ToString("F2");
     }
 }
