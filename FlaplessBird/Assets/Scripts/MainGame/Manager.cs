@@ -20,6 +20,8 @@ public class Manager : MonoBehaviour
     public GameObject coinSpawner3;
     public GameObject camera;
     public GameObject background;
+    public AudioSource soundPlayerEnd;
+    public AudioSource soundPlayerCoin;
 
     public GameObject deadCanvas;
 
@@ -40,9 +42,11 @@ public class Manager : MonoBehaviour
     public void AddCoin(){
         coinCount ++;
         cointText.text = coinCount.ToString();
+        soundPlayerCoin.Play();
     }
 
     public void StopGame(){
+        soundPlayerEnd.Play();
         stopSign = true;
         deadCanvas.SetActive(true);
     }
@@ -56,4 +60,13 @@ public class Manager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    private void Awake()
+    {
+        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("GameMusic");
+        if (musicObj.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
 }
