@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StoreMgmt : MonoBehaviour
 {
@@ -8,7 +9,19 @@ public class StoreMgmt : MonoBehaviour
     // this class is a singleton
     public static StoreMgmt instance;
 
-    // the player's money
+    // the player's money from the MoneyMgmt class
+    public MoneyMgmt moneyMgmt;
+
+    // the player can only buy one 
+
+    // change image of bought item to white
+    public GameObject bought_wings_img;
+    public GameObject bought_cape_img;
+    public GameObject bought_umbrella_img;
+    public GameObject bought_helmet_img;
+
+    
+
 
     // the items that the player has bought
     public int wings = 0;
@@ -32,22 +45,47 @@ public class StoreMgmt : MonoBehaviour
 
     public void bought_wings()
     {
-        wings = 1;
+        if(wings == 0 && moneyMgmt.EnoughMoney(1))
+        {
+            wings = 1;
+            bought_wings_img.SetActive(true);
+            moneyMgmt.useMoney(1);
+        }
+        
+            
+            
     }
 
     public void bought_cape()
     {
-        cape = 1;
+        if (cape == 0 && moneyMgmt.EnoughMoney(2))
+        {
+            cape = 1;
+            bought_cape_img.SetActive(true);
+            moneyMgmt.useMoney(2);
+        }
+        
+        
     }
 
     public void bought_umbrella()
     {
-        umbrella = 1;
+        if (umbrella == 0 && moneyMgmt.EnoughMoney(5))
+        {
+            umbrella = 1;
+            bought_umbrella_img.SetActive(true);
+            moneyMgmt.useMoney(5);
+        }
     }
 
     public void bought_helmet()
     {
-        helmet = 1;
+        if (helmet == 0 && moneyMgmt.EnoughMoney(4))
+        {
+            helmet = 1;
+            bought_helmet_img.SetActive(true);
+            moneyMgmt.useMoney(4);
+        }
     }
 
     
@@ -55,6 +93,11 @@ public class StoreMgmt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //unactive items
+        bought_wings_img.SetActive(false);
+        bought_cape_img.SetActive(false);
+        bought_umbrella_img.SetActive(false);
+        bought_helmet_img.SetActive(false);
         // singleton
         if (instance == null)
         {
