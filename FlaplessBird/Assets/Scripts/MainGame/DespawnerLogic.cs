@@ -5,7 +5,7 @@ using UnityEngine;
 public class DespawnerLogic : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other){
-        if(other.tag == "Obstacle")
+        if(other.tag == "Obstacle" || other.tag == "Coin")
             Destroy(other.gameObject);
     }
 

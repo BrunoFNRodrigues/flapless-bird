@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    // Variables to track touch/mouse input
+    // Variables to track mouse input
     private Vector2 inputStartPosition;
     private bool isInputActive = false;
+
+    //Variables to track touch
+    private Vector2 touchStartPosition;
+    private bool isSwiping = false;
 
     public int playerState = 2;
 
@@ -45,11 +49,11 @@ public class PlayerController : MonoBehaviour
             {
                 float inputDirection = Mathf.Sign(inputDelta.x);
 
-                if (inputDirection > 0f && playerState != 3) // Right swipe
+                if (inputDirection > 0f && playerState != 3) 
                 {
                     MoveRight();
                 }
-                else if (inputDirection < 0f && playerState != 1) // Left swipe
+                else if (inputDirection < 0f && playerState != 1) 
                 {
                     MoveLeft();
                 }
@@ -57,6 +61,42 @@ public class PlayerController : MonoBehaviour
 
             isInputActive = false;
         }
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    touchStartPosition = touch.position;
+                    isSwiping = true;
+                    break;
+
+                case TouchPhase.Ended:
+                    Vector2 swipeDelta = touch.position - touchStartPosition;
+                    float swipeMagnitude = swipeDelta.magnitude;
+
+                    if (swipeMagnitude >= 50f)
+                    {
+                        // Check swipe direction
+                        float swipeDirection = Mathf.Sign(swipeDelta.x);
+
+                        if (swipeDirection > 0f && playerState != 3) // Right swipe
+                        {
+                            MoveRight();
+                        }
+                        else if (swipeDirection < 0f && playerState != 1) // Left swipe
+                        {
+                            MoveLeft();
+                        }
+                    }
+
+                    isSwiping = false;
+                    break;
+            }
+        }
+
     }
 
     private void MoveRight()
