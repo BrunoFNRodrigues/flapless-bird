@@ -33,7 +33,7 @@ public class Manager : MonoBehaviour
     
 
     private void Start(){
-        cointText.text = coinCount.ToString();
+        //cointText.text = coinCount.ToString();
     }
 
     private void Update()
@@ -79,7 +79,6 @@ public class Manager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
     }
 
     void CheckHighScore()
