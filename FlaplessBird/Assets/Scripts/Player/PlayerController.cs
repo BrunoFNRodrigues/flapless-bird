@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     // Movement speed
     public float moveSpeed = 5f;
 
+    public MoneyMgmt moneyMgmt;
+    public StoreMgmt storeMgmt;
+
     // Fixed positions
     public Transform column1;
     public Transform column2;
@@ -80,10 +83,24 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Obstacle")
-            manager.GetComponent<Manager>().StopGame();
+            if(storeMgmt.helmet == 1){
+                storeMgmt.helmet = 0;
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                manager.GetComponent<Manager>().StopGame();
+            }
         if(other.tag == "Coin"){
             manager.GetComponent<Manager>().AddCoin();
             Destroy(other.gameObject);
+            if (storeMgmt.cape == 1){
+                moneyMgmt.addMoney(2);
+            }
+            else
+            {
+                moneyMgmt.addMoney(1);
+            }
         }
     }
 

@@ -1048,6 +1048,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006820530}
   m_CullTransparentMesh: 1
+--- !u!1 &1073879485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073879487}
+  - component: {fileID: 1073879486}
+  m_Layer: 0
+  m_Name: StoreMgmt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1073879486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073879485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9412d733cadf4ae478895ad4d2497da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyMgmt: {fileID: 0}
+  bought_wings_img: {fileID: 0}
+  bought_cape_img: {fileID: 0}
+  bought_umbrella_img: {fileID: 0}
+  bought_helmet_img: {fileID: 0}
+  wings: 0
+  cape: 1
+  umbrella: 0
+  helmet: 1
+--- !u!4 &1073879487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073879485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 403.6017, y: 917.6431, z: -8.808921}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241223992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,6 +2607,14 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 1676142814}
+    - target: {fileID: 1356022876, guid: 895fd9478125737408790b48f37a8653, type: 3}
+      propertyPath: moneyMgmt
+      value: 
+      objectReference: {fileID: 1361847967}
+    - target: {fileID: 1356022876, guid: 895fd9478125737408790b48f37a8653, type: 3}
+      propertyPath: storeMgmt
+      value: 
+      objectReference: {fileID: 1073879486}
     - target: {fileID: 5979884110841994037, guid: 895fd9478125737408790b48f37a8653, type: 3}
       propertyPath: m_Name
       value: Player
