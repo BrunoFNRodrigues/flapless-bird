@@ -63,6 +63,7 @@ public class Manager : MonoBehaviour
     }
 
     public void RestartScene(){
+        stopSign = false;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
