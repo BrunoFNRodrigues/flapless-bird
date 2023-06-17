@@ -22,7 +22,6 @@ public class MoneyMgmt : MonoBehaviour
         get { return instance; }
     }
 
-
     // singleton and dont destroy on load
     void Awake()
     {

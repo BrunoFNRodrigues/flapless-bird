@@ -8,8 +8,8 @@ public class StoreMgmt : MonoBehaviour
     // class that manages the store, and what the player buys in each game
     // this class is a singleton
     public static StoreMgmt instance;
-
     // the player's money from the MoneyMgmt class
+
     public MoneyMgmt moneyMgmt;
 
     // the player can only buy one 
@@ -20,40 +20,37 @@ public class StoreMgmt : MonoBehaviour
     public GameObject bought_umbrella_img;
     public GameObject bought_helmet_img;
 
-    
-
-
     // the items that the player has bought
-    public int wings = 0;
-    public int cape = 0;
-    public int umbrella = 0;
-    public int helmet = 0;
+    public static int wings = 0; //invencible for x seconds 
+    public static int cape = 0; // double money 
+    public static int umbrella = 0; // slows down fall 
+    public static int helmet = 0; // extra life 
 
-    
-    // the list of items that the player can buy
-    //public List<StoreItem> storeItems = new List<StoreItem>();
+    public static StoreMgmt Instance
+    {
+        get { return instance; }
+    }
 
-    // the list of items that the player has bought
-    //public List<StoreItem> boughtItems = new List<StoreItem>();
 
-    /*ITEMS:
-    wings: invencible for x seconds - 0
-    gold_cape: double money - 1
-    umbrella: slows down fall - 2
-    helmet: extra life - 3
-    */
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     public void bought_wings()
     {
+        Debug.Log("bought_wings function called");
         if(wings == 0 && moneyMgmt.EnoughMoney(1))
         {
+            Debug.Log("Entrei");
             wings = 1;
             bought_wings_img.SetActive(true);
             moneyMgmt.useMoney(1);
-        }
-        
-            
-            
+        }  
     }
 
     public void bought_cape()
@@ -64,8 +61,6 @@ public class StoreMgmt : MonoBehaviour
             bought_cape_img.SetActive(true);
             moneyMgmt.useMoney(2);
         }
-        
-        
     }
 
     public void bought_umbrella()
@@ -94,19 +89,20 @@ public class StoreMgmt : MonoBehaviour
     void Start()
     {
         //unactive items
+        Debug.Log("MoneyMgmt reference: " + moneyMgmt);
         bought_wings_img.SetActive(false);
         bought_cape_img.SetActive(false);
         bought_umbrella_img.SetActive(false);
         bought_helmet_img.SetActive(false);
         // singleton
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
 
         // add all the items to the store
         //storeItems.Add(new StoreItem("Wings", 100, 0));
@@ -122,18 +118,56 @@ public class StoreMgmt : MonoBehaviour
     }
 
     // function that buys an item
-    public void BuyItem(int itemIndex)
+    public void Reset()
     {
-        //TODO: check if the player has enough money
-
-        // add the item to the bought items list
-
-        // turn the item off in the store
-
-        // turn the item on in the game
-
-
+        wings = 0;
+        cape = 0;
+        umbrella = 0;
+        helmet = 0;
     }
+
+    // getters and setters
+    public int getWings()
+    {
+        return wings;
+    }
+
+    public int getCape()
+    {
+        return cape;
+    }
+
+    public int getUmbrella()
+    {
+        return umbrella;
+    }
+
+    public int getHelmet()
+    {
+        return helmet;
+    }
+
+    public void setWings(int w)
+    {
+        wings = w;
+    }
+
+    public void setCape(int c)
+    {
+        cape = c;
+    }
+
+    public void setUmbrella(int u)
+    {
+        umbrella = u;
+    }
+
+    public void setHelmet(int h)
+    {
+        helmet = h;
+    }
+
+    
 
 
     

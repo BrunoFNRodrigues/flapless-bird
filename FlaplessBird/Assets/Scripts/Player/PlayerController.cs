@@ -123,8 +123,8 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Obstacle")
-            if(storeMgmt.helmet == 1){
-                storeMgmt.helmet = 0;
+            if(storeMgmt.getHelmet() == 1){
+                storeMgmt.setHelmet(1);
                 Destroy(other.gameObject);
             }
             else
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Coin"){
             manager.GetComponent<Manager>().AddCoin();
             Destroy(other.gameObject);
-            if (storeMgmt.cape == 1){
+            if (storeMgmt.getCape() == 1){
                 moneyMgmt.addMoney(2);
             }
             else
