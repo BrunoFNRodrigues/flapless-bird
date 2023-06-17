@@ -122,15 +122,26 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.tag == "Obstacle")
-            if(storeMgmt.getHelmet() == 1){
-                storeMgmt.setHelmet(1);
+        if(other.tag == "Obstacle"){
+            // get current time
+            float currentTime = Time.time;
+            Debug.Log(currentTime);
+
+            if(storeMgmt.getWings() == 1 && currentTime < 20.0f){
+                Destroy(other.gameObject);
+                
+            }
+            else if (storeMgmt.getHelmet() == 1){
+                storeMgmt.setHelmet(0);
                 Destroy(other.gameObject);
             }
             else
             {
                 manager.GetComponent<Manager>().StopGame();
+                storeMgmt.Reset();
             }
+        }
+            
         if(other.tag == "Coin"){
             manager.GetComponent<Manager>().AddCoin();
             Destroy(other.gameObject);
