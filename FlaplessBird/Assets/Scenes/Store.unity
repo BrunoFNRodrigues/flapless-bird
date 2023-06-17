@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: invincible (5 sec)
+  m_text: invincible (? sec)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8e8b6357a27e7a14baf5aa26cd311898, type: 2}
   m_sharedMaterial: {fileID: 1180052478120769051, guid: 8e8b6357a27e7a14baf5aa26cd311898, type: 2}
@@ -2745,10 +2745,6 @@ MonoBehaviour:
   bought_cape_img: {fileID: 1008901562}
   bought_umbrella_img: {fileID: 1756344994}
   bought_helmet_img: {fileID: 1295078298}
-  wings: 0
-  cape: 0
-  umbrella: 0
-  helmet: 0
 --- !u!4 &1581552940
 Transform:
   m_ObjectHideFlags: 0

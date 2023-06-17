@@ -28,8 +28,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject manager;
 
+    public float startTime;
+
     void Start(){
         manager = GameObject.Find("GameManager");
+        startTime = Time.time;
     }
     
     private void Update()
@@ -129,7 +132,7 @@ public class PlayerController : MonoBehaviour
             float currentTime = Time.time;
             Debug.Log(currentTime);
 
-            if(storeMgmt.getWings() == 1 && currentTime < 20.0f){
+            if(storeMgmt.getWings() == 1 && (currentTime-startTime) < 20.0f){
                 Destroy(other.gameObject);
                 
             }
@@ -161,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
     void Rainbow_color(){
         // function that gradually changes the color of the player if the Wings is bought and Time.time < 20.0f
-        if (storeMgmt.getWings() == 1 && Time.time < 20.0f){
+        if (storeMgmt.getWings() == 1 && (Time.time-startTime) < 20.0f){
             // change color of player
             // change color of player
             float t = Mathf.PingPong(Time.time, 1.0f) / 1.0f;
