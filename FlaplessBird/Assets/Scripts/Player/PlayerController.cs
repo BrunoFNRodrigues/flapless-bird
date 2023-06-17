@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
+        Rainbow_color();
+
         if (Input.GetMouseButtonDown(0) && !manager.GetComponent<Manager>().stopSign)
         {
             inputStartPosition = Input.mousePosition;
@@ -153,6 +155,23 @@ public class PlayerController : MonoBehaviour
                 moneyMgmt.addMoney(1);
             }
         }
+
+        
+    }
+
+    void Rainbow_color(){
+        // function that gradually changes the color of the player if the Wings is bought and Time.time < 20.0f
+        if (storeMgmt.getWings() == 1 && Time.time < 20.0f){
+            // change color of player
+            // change color of player
+            float t = Mathf.PingPong(Time.time, 1.0f) / 1.0f;
+            GetComponent<SpriteRenderer>().color = Color.Lerp(Color.red, Color.blue, t);
+        }
+        else{
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+
     }
 
 }
