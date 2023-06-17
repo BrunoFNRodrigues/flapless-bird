@@ -1654,10 +1654,6 @@ MonoBehaviour:
   bought_cape_img: {fileID: 0}
   bought_umbrella_img: {fileID: 0}
   bought_helmet_img: {fileID: 0}
-  wings: 0
-  cape: 1
-  umbrella: 0
-  helmet: 1
 --- !u!4 &1073879487
 Transform:
   m_ObjectHideFlags: 0
@@ -2528,6 +2524,7 @@ MonoBehaviour:
   backgroundRenderer: {fileID: 1618421941}
   stop: 0
   manager: {fileID: 0}
+  storeMgmt: {fileID: 1073879486}
 --- !u!23 &1618421941
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3630,6 +3627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7768669434843667226, guid: acef73f31e9771945a5d81f03fa8ef2d, type: 3}
+      propertyPath: storeMgmt
+      value: 
+      objectReference: {fileID: 1073879486}
     - target: {fileID: 7768669434843667226, guid: acef73f31e9771945a5d81f03fa8ef2d, type: 3}
       propertyPath: cameraSpeed
       value: 0.7
