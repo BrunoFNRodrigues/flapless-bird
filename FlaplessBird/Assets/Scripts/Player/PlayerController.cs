@@ -39,34 +39,6 @@ public class PlayerController : MonoBehaviour
     {
         Rainbow_color();
 
-        if (Input.GetMouseButtonDown(0) && !manager.GetComponent<Manager>().stopSign)
-        {
-            inputStartPosition = Input.mousePosition;
-            isInputActive = true;
-        }
-        else if (Input.GetMouseButtonUp(0) && isInputActive && !manager.GetComponent<Manager>().stopSign)
-        {
-            Vector2 inputEndPosition = Input.mousePosition;
-            Vector2 inputDelta = inputEndPosition - inputStartPosition;
-            float inputMagnitude = inputDelta.magnitude;
-
-            if (inputMagnitude >= 50f)
-            {
-                float inputDirection = Mathf.Sign(inputDelta.x);
-
-                if (inputDirection > 0f && playerState != 3) 
-                {
-                    MoveRight();
-                }
-                else if (inputDirection < 0f && playerState != 1) 
-                {
-                    MoveLeft();
-                }
-            }
-
-            isInputActive = false;
-        }
-
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -82,7 +54,7 @@ public class PlayerController : MonoBehaviour
                     Vector2 swipeDelta = touch.position - touchStartPosition;
                     float swipeMagnitude = swipeDelta.magnitude;
 
-                    if (swipeMagnitude >= 50f)
+                    if (swipeMagnitude >= 50f && !manager.GetComponent<Manager>().stopSign)
                     {
                         // Check swipe direction
                         float swipeDirection = Mathf.Sign(swipeDelta.x);
